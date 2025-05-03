@@ -1,0 +1,145 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:component="clr-namespace:ColorPicker.Component"
+    xmlns:converter="clr-namespace:ColorPicker.Converter"
+    xmlns:local="clr-namespace:ColorPicker">
+
+    <converter:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+    <converter:ColorToBrushConverter x:Key="ColorToBrushConverter" />
+    <converter:SplitColorChannelConverter x:Key="SplitColorChannelConverter" />
+
+    <DrawingBrush
+        x:Key="transparencyBackgroundBrush"
+        TileMode="Tile"
+        Viewport="0,0,8,8"
+        ViewportUnits="Absolute">
+        <DrawingBrush.Drawing>
+            <DrawingGroup>
+                <GeometryDrawing Brush="LightGray">
+                    <GeometryDrawing.Geometry>
+                        <RectangleGeometry Rect="4,0,4,4" />
+                    </GeometryDrawing.Geometry>
+                </GeometryDrawing>
+                <GeometryDrawing Brush="LightGray">
+                    <GeometryDrawing.Geometry>
+                        <RectangleGeometry Rect="0,4,4,4" />
+                    </GeometryDrawing.Geometry>
+                </GeometryDrawing>
+            </DrawingGroup>
+        </DrawingBrush.Drawing>
+    </DrawingBrush>
+
+    <Style x:Key="InputTextStyle" TargetType="TextBlock">
+        <Setter Property="Width" Value="14" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+
+    <Style x:Key="InputTextBoxStyle" TargetType="TextBox">
+        <Setter Property="Width" Value="36" />
+        <Setter Property="Height" Value="20" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="InputMethod.IsInputMethodEnabled" Value="False" />
+    </Style>
+
+    <Style TargetType="{x:Type local:ColorPicker}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:ColorPicker}">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <component:SaturationBrightnessPicker
+                                x:Name="PART_SaturationBrightnessPicker"
+                                Width="240"
+                                Height="240"
+                                Hue="{Binding ElementName=PART_HuePicker, Path=Hue, Mode=OneWay}" />
+                            <component:HuePicker
+                                x:Name="PART_HuePicker"
+                                Width="12"
+                                Margin="28,0,0,0"
+                                Orientation="Vertical" />
+                            <component:TransparencyPicker
+                                x:Name="PART_TransparencyPicker"
+                                Width="12"
+                                Margin="28,0,0,0"
+                                Orientation="Vertical"
+                                Visibility="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=IsAlphaEnabled, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"
+                                Color="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=Color, Mode=OneWay}" />
+                        </StackPanel>
+
+                        <StackPanel Margin="0,20,0,0" Orientation="Horizontal">
+                            <StackPanel>
+                                <Border
+                                    Width="60"
+                                    Height="30"
+                                    Background="{StaticResource transparencyBackgroundBrush}"
+                                    SnapsToDevicePixels="True">
+                                    <Border Background="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=Color, Mode=OneTime, Converter={StaticResource ColorToBrushConverter}}" />
+                                </Border>
+                                <Border
+                                    Width="60"
+                                    Height="30"
+                                    Background="{StaticResource transparencyBackgroundBrush}"
+                                    SnapsToDevicePixels="True">
+                                    <Border Background="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=Color, Mode=OneWay, Converter={StaticResource ColorToBrushConverter}}" />
+                                </Border>
+                            </StackPanel>
+
+                            <StackPanel Margin="15,0,0,0" Orientation="Horizontal">
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Style="{StaticResource InputTextStyle}" Text="R" />
+                                        <TextBox x:Name="PART_RedChannelInput" Style="{StaticResource InputTextBoxStyle}" />
+                                    </StackPanel>
+                                    <StackPanel Margin="0,6,0,0" Orientation="Horizontal">
+                                        <TextBlock Style="{StaticResource InputTextStyle}" Text="G" />
+                                        <TextBox x:Name="PART_GreenChannelInput" Style="{StaticResource InputTextBoxStyle}" />
+                                    </StackPanel>
+                                    <StackPanel Margin="0,6,0,0" Orientation="Horizontal">
+                                        <TextBlock Style="{StaticResource InputTextStyle}" Text="B" />
+                                        <TextBox x:Name="PART_BlueChannelInput" Style="{StaticResource InputTextBoxStyle}" />
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Margin="15,0,0,0">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Style="{StaticResource InputTextStyle}" Text="H" />
+                                        <TextBox x:Name="PART_HueChannelInput" Style="{StaticResource InputTextBoxStyle}" />
+                                    </StackPanel>
+                                    <StackPanel Margin="0,6,0,0" Orientation="Horizontal">
+                                        <TextBlock Style="{StaticResource InputTextStyle}" Text="S" />
+                                        <TextBox x:Name="PART_SaturationChannelInput" Style="{StaticResource InputTextBoxStyle}" />
+                                    </StackPanel>
+                                    <StackPanel Margin="0,6,0,0" Orientation="Horizontal">
+                                        <TextBlock Style="{StaticResource InputTextStyle}" Text="B" />
+                                        <TextBox x:Name="PART_BrightnessChannelInput" Style="{StaticResource InputTextBoxStyle}" />
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Margin="15,0,0,0">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock
+                                            FontSize="14"
+                                            Style="{StaticResource InputTextStyle}"
+                                            Text="#" />
+                                        <TextBox
+                                            x:Name="PART_HexValueInput"
+                                            Width="70"
+                                            Style="{StaticResource InputTextBoxStyle}" />
+                                    </StackPanel>
+                                    <StackPanel
+                                        Margin="0,6,0,0"
+                                        VerticalAlignment="Top"
+                                        Orientation="Horizontal"
+                                        Visibility="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=IsAlphaEnabled, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                                        <TextBlock Style="{StaticResource InputTextStyle}" Text="A" />
+                                        <TextBox x:Name="PART_AlphaChannelInput" Style="{StaticResource InputTextBoxStyle}" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

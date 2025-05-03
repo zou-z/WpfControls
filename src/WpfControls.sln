@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35931.197
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Control", "Control", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{9F253521-E329-453A-B823-E88ACC91BA61}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorPickerTest", "ColorPickerTest\ColorPickerTest.csproj", "{B4E6F2D1-A49B-48B0-ABA6-B7A1288C7719}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorPicker", "ColorPicker\ColorPicker.csproj", "{A309147A-289C-4FEB-8FD4-9156427EC518}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B4E6F2D1-A49B-48B0-ABA6-B7A1288C7719}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4E6F2D1-A49B-48B0-ABA6-B7A1288C7719}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4E6F2D1-A49B-48B0-ABA6-B7A1288C7719}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4E6F2D1-A49B-48B0-ABA6-B7A1288C7719}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A309147A-289C-4FEB-8FD4-9156427EC518}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A309147A-289C-4FEB-8FD4-9156427EC518}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A309147A-289C-4FEB-8FD4-9156427EC518}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A309147A-289C-4FEB-8FD4-9156427EC518}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B4E6F2D1-A49B-48B0-ABA6-B7A1288C7719} = {9F253521-E329-453A-B823-E88ACC91BA61}
+		{A309147A-289C-4FEB-8FD4-9156427EC518} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FB1C91D1-4A2C-4C4F-829A-992503507F23}
+	EndGlobalSection
+EndGlobal
